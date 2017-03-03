@@ -25,20 +25,34 @@ app.use(bodyParser.json({
 app.use(express.static(__dirname + '/public/index.html'));
 
 var PORT = process.env.PORT || 7777;
-mongoose.connect('mongodb://localhost/nytreact');
-mongoose.Promise = Promise;
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log('MONGOOSE is working');
-    // we're connected!
+
+
+// connect to mongoose
+var db;
+mongoose.connect("mongodb://localhost/nytreact", function (err) {
+    if (err) {
+        console.log("Connection Failed!", err);
+    } else {
+        console.log("Connection Successful!");
+        db = mongoose.connection;
+        init();
+    }
 });
-// Make a request call to grab the HTML body from the site of your choice
-// First, tell the console what server.js is doing
-console.log("\n***********************************\n" + "Grabbing every article\n" + "from the NYT's website:" + "\n***********************************\n");
 
+function init() {
+    mongoose.Promise = Promise;
 
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
+        console.log('MONGOOSE is working');
+        // we're connected!
+    });
+    // we need to explicitly tell express to send anyone who goes to / route to open index.html
+    app.get("/", function(req, res) {
+        res.sendFile(__dirname + "/public/index.html");
+    });
 
-app.listen(PORT, function() {
-    console.log("App running on port 7777!");
-});
+    app.listen(PORT, function() {
+        console.log("App listening on PORT: " + PORT);
+    });
+}

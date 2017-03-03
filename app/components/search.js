@@ -1,18 +1,21 @@
 var React = require('react');
-// var Saved = require("./saved");
+// var List = require("./list");
 // ES ==> ES5
 //class Search extends React.component {}
 var Search = React.createClass({
-    // getInitialState() {
-    //     return {
-    //         counter: 0
-    //     };
-    // },
-    // handleClick: function(event) {
-    //     this.setState({
-    //         counter: this.state.counter + 1
-    //     });
-    // },
+    getInitialState() {
+        return {
+            articles: []
+        };
+    },
+    handleClick: function(event) {
+        helper.getStudents().then(function (response) {
+            // do something
+            this.setState({
+                articles: response.data
+            });
+        }.bind(this));
+    },
     render: function () {
         //JSX
 
@@ -61,8 +64,8 @@ var Search = React.createClass({
                       </div>
 
 
-                      <button type="submit" className="btn btn-default" id="runSearch"><i className="fa fa-search"></i> Search</button>
-                      <button type="button" className="btn btn-default" id="clearAll"><i className="fa fa-trash"></i> Clear Results</button>
+                      <button type="submit" onClick={this.handleClick.bind(this)} className="btn btn-default" id="runSearch"><i className="fa fa-search"></i> Search</button>
+                      <button type="button" onClick={this.getInitialState.bind(this)}className="btn btn-default" id="clearAll"><i className="fa fa-trash"></i> Clear Results</button>
 
                     </form>
                 </div>

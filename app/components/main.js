@@ -1,7 +1,7 @@
 var Saved = require("./saved");
 var React = require('react');
 
-var List = React.createClass({
+var Main = React.createClass({
     render: function () {
         return (
 
@@ -9,4 +9,4 @@ var List = React.createClass({
     }
 });
 
-module.exports = List;
+module.exports = Main;
