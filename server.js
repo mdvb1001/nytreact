@@ -22,7 +22,7 @@ app.use(bodyParser.json({
 
 
 // Not sure if we need this or not. I think Mark said webpack is handling this now.
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/index.html'));
 
 var PORT = process.env.PORT || 7777;
 mongoose.connect('mongodb://localhost/nytreact');

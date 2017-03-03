@@ -1,10 +1,16 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-var Roster = require("./components/roster");
+var Search = require("./components/search");
 
 var where = document.getElementById("app");
+
+
 ReactDOM.render(
     <div>
-        <Roster />
+        <div><Search /></div>
     </div>
+
+
+
+
     , where);
