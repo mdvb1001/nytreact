@@ -6,9 +6,9 @@ var bodyParser = require("body-parser");
 var app = express();
 // Snatches HTML from URLs
 var request = require('request');
-var Article = require("../models/Article.js");
+var Article = require("./models/Article.js");
 // link to routes
-require("../controllers/nyt_controller.js")(app);
+require("./controllers/nyt_controller.js")(app);
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
