@@ -22,7 +22,7 @@ app.use(bodyParser.json({
 
 
 // Not sure if we need this or not. I think Mark said webpack is handling this now.
-app.use(express.static(__dirname + '/public/index.html'));
+app.use(express.static(__dirname + '/public'));
 
 var PORT = process.env.PORT || 7777;
 
@@ -49,7 +49,7 @@ function init() {
     });
     // we need to explicitly tell express to send anyone who goes to / route to open index.html
     app.get("/", function(req, res) {
-        res.sendFile(__dirname + "/public/index.html");
+        res.sendFile(__dirname + "index.html");
     });
 
     app.listen(PORT, function() {
