@@ -29,9 +29,15 @@ var Main = React.createClass({
             })
         }.bind(this));
     },
-    handleArticleClear: function () {
+    handleSearchClear: function () {
         this.setState({
             topArticles: []
+        })
+    },
+    handleArticleSave: function () {
+        ///route...
+            console.log("hello");
+        this.setState({
         })
     },
     render: function () {
@@ -48,9 +54,13 @@ var Main = React.createClass({
                             this.handleFormSubmit()
                         }.bind(this)}
                         onClear={function(){
-                            this.handleArticleClear()
-                        }.bind(this)}/>
-                <TopPanel topArticles={this.state.topArticles}/>
+                            this.handleSearchClear()
+                        }.bind(this)} />
+                <TopPanel topArticles={this.state.topArticles}
+                          saveArticle={function() {
+                            this.handleArticleSave()
+                          }}
+                          />
             </div>
         );
     }

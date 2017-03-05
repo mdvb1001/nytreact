@@ -14,6 +14,7 @@ var helper = {
             method: 'get',
             url:  queryUrl,
         }).then(function (response) {
+            console.log(response.data);
             return response.data;
         });
     },

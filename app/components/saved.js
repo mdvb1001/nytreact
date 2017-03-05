@@ -3,11 +3,6 @@ var Saved = React.createClass({
     render: function () {
         return (
 
-
-
-
-
-
             );
     }
 });
