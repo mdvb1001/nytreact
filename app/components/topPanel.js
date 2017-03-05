@@ -19,9 +19,9 @@ var TopPanel = React.createClass({
                             <TopArticle article={article}
                                         saveThisArticle={function() {
                                             this.handleSave()
-                          }} />
-                            )
-                        }.bind(this))
+                                  }.bind(this)} />
+                                    )
+                                }.bind(this))
             }
                         </form>
                     </div>

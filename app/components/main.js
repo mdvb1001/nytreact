@@ -59,8 +59,7 @@ var Main = React.createClass({
                 <TopPanel topArticles={this.state.topArticles}
                           saveArticle={function() {
                             this.handleArticleSave()
-                          }}
-                          />
+                        }.bind(this)} />
             </div>
         );
     }
