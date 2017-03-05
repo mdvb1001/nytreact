@@ -3,6 +3,8 @@ var React = require('react');
 var Search = require('./search');
 var helpers = require('./utils/helpers');
 var TopPanel = require('./topPanel');
+var TopArticl = require('./topArticle');
+var axios = require("axios");
 
 var Main = React.createClass({
     getInitialState: function () {
@@ -11,7 +13,8 @@ var Main = React.createClass({
             numArticle: 5,
             startYear: "",
             endYear: "",
-            topArticles: []
+            topArticles: [],
+            savedArticles: []
         }
     },
     handleUserInput: function(object) {
@@ -34,11 +37,22 @@ var Main = React.createClass({
             topArticles: []
         })
     },
-    handleArticleSave: function () {
-        ///route...
-            console.log("hello");
-        this.setState({
-        })
+    handleArticleSave: function (article) {
+        var savedArticles = this.state.savedArticles;
+        var newArticle = {
+            title: article.title,
+            link: article.link,
+            pub_date: article.date,
+        };
+        console.log(newArticle);
+        axios.post('/api/saved/', newArticle)
+            .then(function (response) {
+                savedArticles.push(response.data);
+                this.setState({
+                    savedArticles: savedArticles
+                })
+            }.bind(this)
+            );
     },
     render: function () {
         return (
@@ -57,8 +71,8 @@ var Main = React.createClass({
                             this.handleSearchClear()
                         }.bind(this)} />
                 <TopPanel topArticles={this.state.topArticles}
-                          saveArticle={function() {
-                            this.handleArticleSave()
+                          saveArticle={function(article) {
+                            this.handleArticleSave(article)
                         }.bind(this)} />
             </div>
         );

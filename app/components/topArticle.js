@@ -1,14 +1,14 @@
 var React = require('react');
 var TopArticle = React.createClass({
-    handleOnClickSave: function() {
-        this.props.saveThisArticle();
-    }
-    ,
+    handleOnClickSave: function(event, article) {
+        event.preventDefault();
+        this.props.saveThisArticle(article);
+    },
     render: function () {
         return (
             <div>
             {
-                <div className="well">
+                <div className="well" id={ 'articleWell-' + this.props.article.id }>
                     <div className="row">
                       <div className="col-xs-9">
                         {this.props.article.headline.main}
@@ -18,9 +18,14 @@ var TopArticle = React.createClass({
                         {this.props.article.pub_date}
                       </div>
                       <div className="col-xs-3">
-                        <button type="button" onClick={function() {
-                            this.handleOnClickSave();
-                        }.bind(this)} className="btn btn-success pull-right" id="save">Save</button>
+                          <button type='submit' form={ 'hidden-form-' + this.props.article.id }
+                                className='btn btn-primary pull-right'>Save</button>
+                          <form id={ 'hidden-form-' + this.props.article.id }
+                              className='hidden-xs-up'
+                              onSubmit={function(event) {
+                                this.handleOnClickSave(event, this.props.article);
+                            }.bind(this)}>
+                          </form>
                       </div>
                     </div>
                 </div>

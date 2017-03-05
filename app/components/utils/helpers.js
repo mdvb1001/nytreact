@@ -10,7 +10,7 @@ var helper = {
         if (searchQuery.endYear) {
             queryUrl = queryUrl + '&end_date' + searchQuery.endYear + '0101';
         }
-        return  axios({
+        return axios({
             method: 'get',
             url:  queryUrl,
         }).then(function (response) {

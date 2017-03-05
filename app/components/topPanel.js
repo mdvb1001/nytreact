@@ -1,9 +1,7 @@
 var React = require('react');
 var TopArticle = require('./topArticle');
+
 var TopPanel = React.createClass({
-    handleSave: function () {
-        this.props.saveArticle();
-    },
     render: function () {
         return (
             <div>
@@ -12,18 +10,17 @@ var TopPanel = React.createClass({
                         <h3 className="panel-title"><strong><i className="fa fa-list-alt"></i>Search Result</strong></h3>
                     </div>
                     <div className="panel-body">
-                        <form role="form">
             {
                 this.props.topArticles.map(function(article){
                     return (
                             <TopArticle article={article}
-                                        saveThisArticle={function() {
-                                            this.handleSave()
+                                        key={ article.id }
+                                        saveThisArticle={function(article) {
+                                            this.props.saveArticle(article)
                                   }.bind(this)} />
                                     )
                                 }.bind(this))
             }
-                        </form>
                     </div>
                 </div>
             </div>
