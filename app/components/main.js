@@ -3,7 +3,7 @@ var React = require('react');
 var Search = require('./search');
 var helpers = require('./utils/helpers');
 var TopPanel = require('./topPanel');
-var TopArticl = require('./topArticle');
+var SavedPanel = require('./savedPanel');
 var axios = require("axios");
 
 var Main = React.createClass({
@@ -28,7 +28,7 @@ var Main = React.createClass({
         }
         helpers.getArticles(searchQuery).then(function(data){
             this.setState({
-                topArticles: data.response.docs
+                topArticles: data.response.docs,
             })
         }.bind(this));
     },
@@ -40,14 +40,15 @@ var Main = React.createClass({
     handleArticleSave: function (article) {
         var savedArticles = this.state.savedArticles;
         var newArticle = {
-            title: article.title,
-            link: article.link,
-            pub_date: article.date,
+            title: article.headline.main,
+            date: article.pub_date,
+            url: article.web_url
         };
-        console.log(newArticle);
+                console.log(newArticle);
         axios.post('/api/saved/', newArticle)
             .then(function (response) {
                 savedArticles.push(response.data);
+                console.log(savedArticles);
                 this.setState({
                     savedArticles: savedArticles
                 })
@@ -74,6 +75,7 @@ var Main = React.createClass({
                           saveArticle={function(article) {
                             this.handleArticleSave(article)
                         }.bind(this)} />
+                <SavedPanel savedArticles={this.state.savedArticles} />
             </div>
         );
     }

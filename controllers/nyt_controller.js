@@ -9,6 +9,7 @@ module.exports = function (app) {
 
     app.post('/api/saved/', function (req, res) {
         var article = req.body;
+        console.log("super: " + article);
         Article.create(article, function(err, article) {
             if (err) {
                 res.send(err);

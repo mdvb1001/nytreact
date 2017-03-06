@@ -8,7 +8,7 @@ var TopArticle = React.createClass({
         return (
             <div>
             {
-                <div className="well" id={ 'articleWell-' + this.props.article.id }>
+                <div className="well" id={ 'articleWell-' + this.props.article._id }>
                     <div className="row">
                       <div className="col-xs-9">
                         {this.props.article.headline.main}
@@ -18,13 +18,13 @@ var TopArticle = React.createClass({
                         {this.props.article.pub_date}
                       </div>
                       <div className="col-xs-3">
-                          <button type='submit' form={ 'hidden-form-' + this.props.article.id }
+                          <button type='submit' form={ 'hidden-form-' + this.props.article._id }
                                 className='btn btn-primary pull-right'>Save</button>
-                          <form id={ 'hidden-form-' + this.props.article.id }
+                          <form id={ 'hidden-form-' + this.props.article._id }
                               className='hidden-xs-up'
                               onSubmit={function(event) {
                                 this.handleOnClickSave(event, this.props.article);
-                            }.bind(this)}>
+                              }.bind(this)}>
                           </form>
                       </div>
                     </div>

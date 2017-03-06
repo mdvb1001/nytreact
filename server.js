@@ -7,8 +7,6 @@ var app = express();
 // Snatches HTML from URLs
 var request = require('request');
 var Article = require("./models/Article.js");
-// link to routes
-require("./controllers/nyt_controller.js")(app);
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -20,6 +18,8 @@ app.use(bodyParser.json({
     type: "application/vnd.api+json"
 }));
 
+// link to routes
+require("./controllers/nyt_controller.js")(app);
 
 // Not sure if we need this or not. I think Mark said webpack is handling this now.
 app.use(express.static(__dirname + '/public'));

@@ -5,16 +5,15 @@ mongoose.modelSchemas = {};
 var articleSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     date:{
-        type: Date,
-        required: true
+        type: Date
     },
     url: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     }
 });
 var Article = mongoose.model('Article', articleSchema);

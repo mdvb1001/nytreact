@@ -1,6 +1,5 @@
 var React = require('react');
 var TopArticle = require('./topArticle');
-
 var TopPanel = React.createClass({
     render: function () {
         return (
@@ -13,13 +12,13 @@ var TopPanel = React.createClass({
             {
                 this.props.topArticles.map(function(article){
                     return (
-                            <TopArticle article={article}
-                                        key={ article.id }
-                                        saveThisArticle={function(article) {
-                                            this.props.saveArticle(article)
-                                  }.bind(this)} />
-                                    )
-                                }.bind(this))
+                        <TopArticle article={article}
+                                    key={ article._id }
+                                    saveThisArticle={function(article) {
+                                        this.props.saveArticle(article)
+                                    }.bind(this)} />
+                    )
+                }.bind(this))
             }
                     </div>
                 </div>
