@@ -23,12 +23,13 @@ var Main = React.createClass({
     handleFormSubmit: function () {
         var searchQuery = {
             searchTerm: this.state.searchTerm,
+            numArticle: this.state.numArticle,
             startYear: this.state.startYear,
             endYear: this.state.endYear
         }
         helpers.getArticles(searchQuery).then(function(data){
             this.setState({
-                topArticles: data.response.docs,
+                topArticles: data,
             })
         }.bind(this));
     },
@@ -44,17 +45,33 @@ var Main = React.createClass({
             date: article.pub_date,
             url: article.web_url
         };
-                console.log(newArticle);
         axios.post('/api/saved/', newArticle)
             .then(function (response) {
                 savedArticles.push(response.data);
-                console.log(savedArticles);
                 this.setState({
                     savedArticles: savedArticles
                 })
             }.bind(this)
             );
     },
+    componentDidMount: function() {
+        this.getArticlesSaved()
+    },
+    componentDidUpdate: function() {
+        this.getArticlesSaved();
+    },
+    getArticlesSaved: function () {
+        axios.get('/api/saved/')
+        .then(function (data) {
+            this.setState({ savedArticles: data.data })
+        }.bind(this));
+    },
+    handleArticleDelete: function(articleId) {
+        axios.delete('/api/saved/' + articleId, {}).then(function(articleDelete) {
+            console.log(articleDelete)
+        });
+    },
+
     render: function () {
         return (
             <div>
@@ -75,7 +92,11 @@ var Main = React.createClass({
                           saveArticle={function(article) {
                             this.handleArticleSave(article)
                         }.bind(this)} />
-                <SavedPanel savedArticles={this.state.savedArticles} />
+                <SavedPanel savedArticles={this.state.savedArticles}
+                            savedArticleDelete={function(articleId){
+                                this.handleArticleDelete(articleId)
+                            }.bind(this)}
+                            />
             </div>
         );
     }

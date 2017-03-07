@@ -18,9 +18,9 @@ var TopArticle = React.createClass({
                         {this.props.article.pub_date}
                       </div>
                       <div className="col-xs-3">
-                          <button type='submit' form={ 'hidden-form-' + this.props.article._id }
+                          <button type='submit' form={ this.props.article._id }
                                 className='btn btn-primary pull-right'>Save</button>
-                          <form id={ 'hidden-form-' + this.props.article._id }
+                          <form id={ this.props.article._id }
                               className='hidden-xs-up'
                               onSubmit={function(event) {
                                 this.handleOnClickSave(event, this.props.article);

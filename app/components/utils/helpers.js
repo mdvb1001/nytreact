@@ -12,13 +12,20 @@ var helper = {
         }
         return axios({
             method: 'get',
-            url:  queryUrl,
+            url:  queryUrl
         }).then(function (response) {
-            console.log(response.data);
-            return response.data;
+            // console.log(response.data);
+            // return response.data;
+            var newArray = [];
+            console.log(searchQuery.numArticle);
+            for (var i = 0; i < searchQuery.numArticle; i++) {
+                newArray.push(response.data.response.docs[i]);
+            }
+            console.log("Here is Johnny");
+            console.log(newArray);
+            return newArray;
         });
-    },
-    updateArticles: function () {}
+    }
 };
 
 module.exports = helper;

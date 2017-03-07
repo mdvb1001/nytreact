@@ -44,7 +44,7 @@ var Search = React.createClass({
 
                       <div className="form-group">
                         <label htmlFor="pwd">Number of Records to Retrieve:</label>
-                        <select name="numArticle" className="form-control" id="numRecordsSelect" value={this.props.numArticle} onChange={function(event){
+                        <select name="numArticle" className="form-control" id="numArticle" value={this.props.numArticle} onChange={function(event){
                             this.handleChange(event);
                         }.bind(this)}>
                             <option value={1}>1</option>

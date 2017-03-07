@@ -1,6 +1,9 @@
 var React = require('react');
 var SavedArticle = require('./savedArticle');
 var SavedPanel = React.createClass({
+    handleOneArticleDelete: function(articleId) {
+        this.props.savedArticleDelete(articleId);
+    },
     render: function () {
         return (
             <div>
@@ -11,10 +14,12 @@ var SavedPanel = React.createClass({
                     <div className="panel-body">
             {
                 this.props.savedArticles.map(function(savedArticles){
-                    console.log(this.props.savedArticles);
                     return (
                         <SavedArticle savedArticles={savedArticles}
-                        />
+                                      key={ savedArticles._id }
+                                      onArticleDelete={ function(articleId) {
+                                        this.handleOneArticleDelete(articleId)
+                                      }.bind(this)}/>
                     )
                 }.bind(this))
             }

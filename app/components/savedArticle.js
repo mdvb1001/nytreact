@@ -1,6 +1,8 @@
 var React = require('react');
 var SavedArticle = React.createClass({
-    handleOnClickSave: function(event, article) {
+    handleThisDelete: function(event, articleId) {
+        event.preventDefault();
+        this.props.onArticleDelete(articleId);
     },
     render: function () {
         return (
@@ -15,16 +17,17 @@ var SavedArticle = React.createClass({
                             <br />
                         {this.props.savedArticles.date}
                       </div>
-                      <div className="col-xs-3">
-                          <button type='submit' href='#' form={ 'hidden-form-' + this.props.savedArticles._id }
-                                className='btn btn-primary pull-right'>Delete</button>
-                          <form id={ 'hidden-form-' + this.props.savedArticles._id }
-                              className='hidden-xs-up'
-                              onSubmit={function(event) {
-                                this.handleOnClickSave(event, this.props.savedArticles);
-                              }.bind(this)}>
+                      <div className="col-sm-3">
+                          <form id={this.props.savedArticles._id} >
+                          <button type="click" form={this.props.savedArticles._id}
+                                  onClick={ function(event) {
+                                      this.handleThisDelete(event, this.props.savedArticles._id)
+                                  }.bind(this) }
+                                  className="btn-danger pull-right">
+                              Delete
+                          </button>
                           </form>
-                      </div>
+                        </div>
                     </div>
                 </div>
             }
