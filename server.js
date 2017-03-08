@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var express = require('express');
 var bodyParser = require("body-parser");
+var methodOverride = require("method-override");
 // Initialize express
 var app = express();
 // Snatches HTML from URLs
@@ -18,6 +19,8 @@ app.use(bodyParser.json({
     type: "application/vnd.api+json"
 }));
 
+// link to routes
+require("./controllers/nyt_controller.js")(app);
 
 // Not sure if we need this or not. I think Mark said webpack is handling this now.
 app.use(express.static(__dirname + '/public'));
@@ -59,5 +62,3 @@ app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
 });
 // }
-// link to routes
-require("./controllers/nyt_controller.js")(app);
