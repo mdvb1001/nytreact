@@ -18,8 +18,6 @@ app.use(bodyParser.json({
     type: "application/vnd.api+json"
 }));
 
-// link to routes
-require("./controllers/nyt_controller.js")(app);
 
 // Not sure if we need this or not. I think Mark said webpack is handling this now.
 app.use(express.static(__dirname + '/public'));
@@ -45,19 +43,21 @@ mongoose.connect("mongodb://heroku_sd1rpjsp:vpnc8i7dg712lntvs03niaa9q1@ds123050.
 db = mongoose.connection;
 
 // function init() {
-    mongoose.Promise = Promise;
+mongoose.Promise = Promise;
 
-    db.on('error', console.error.bind(console, 'connection error:'));
-    db.once('open', function() {
-        console.log('MONGOOSE is working');
-        // we're connected!
-    });
-    // we need to explicitly tell express to send anyone who goes to / route to open index.html
-    app.get("/", function(req, res) {
-        res.sendFile(__dirname + "index.html");
-    });
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log('MONGOOSE is working');
+    // we're connected!
+});
+// we need to explicitly tell express to send anyone who goes to / route to open index.html
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + "index.html");
+});
 
-    app.listen(PORT, function() {
-        console.log("App listening on PORT: " + PORT);
-    });
+app.listen(PORT, function() {
+    console.log("App listening on PORT: " + PORT);
+});
 // }
+// link to routes
+require("./controllers/nyt_controller.js")(app);
