@@ -29,15 +29,20 @@ var PORT = process.env.PORT || 7777;
 
 // connect to mongoose
 var db;
-mongoose.connect("mongodb://heroku_sd1rpjsp:vpnc8i7dg712lntvs03niaa9q1@ds123050.mlab.com:23050/heroku_sd1rpjsp", function (err) {
-    if (err) {
-        console.log("Connection Failed!", err);
-    } else {
-        console.log("Connection Successful!");
-        db = mongoose.connection;
-        init();
-    }
-});
+
+// mongoose.connect("mongodb://heroku_sd1rpjsp:vpnc8i7dg712lntvs03niaa9q1@ds123050.mlab.com:23050/heroku_sd1rpjsp", function (err) {
+//     if (err) {
+//         console.log("Connection Failed!", err);
+//     } else {
+//         console.log("Connection Successful!");
+//         db = mongoose.connection("");
+//         init();
+//     }
+// });
+
+mongoose.connect("mongodb://heroku_sd1rpjsp:vpnc8i7dg712lntvs03niaa9q1@ds123050.mlab.com:23050/heroku_sd1rpjsp");
+
+db = mongoose.connection("");
 
 function init() {
     mongoose.Promise = Promise;
