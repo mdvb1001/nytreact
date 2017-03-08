@@ -23,7 +23,7 @@ var SavedArticle = React.createClass({
                                   onClick={ function(event) {
                                       this.handleThisDelete(event, this.props.savedArticles._id)
                                   }.bind(this) }
-                                  className="btn-danger pull-right">
+                                  className="btn btn-danger btn pull-right">
                               Delete
                           </button>
                           </form>

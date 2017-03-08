@@ -19,7 +19,7 @@ var TopArticle = React.createClass({
                       </div>
                       <div className="col-xs-3">
                           <button type='submit' form={ this.props.article._id }
-                                className='btn btn-primary pull-right'>Save</button>
+                                className='btn btn-primary btn-lg pull-right'>Save</button>
                           <form id={ this.props.article._id }
                               className='hidden-xs-up'
                               onSubmit={function(event) {
