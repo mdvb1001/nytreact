@@ -4,7 +4,7 @@ var TopPanel = React.createClass({
     render: function () {
         return (
             <div>
-                <div className="panel panel-success">
+                <div className="panel panel-default" id="topHeader">
                     <div className="panel-heading">
                         <h3 className="panel-title"><strong><i className="fa fa-list-alt"></i>Search Result</strong></h3>
                     </div>

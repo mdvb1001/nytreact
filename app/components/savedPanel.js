@@ -7,7 +7,7 @@ var SavedPanel = React.createClass({
     render: function () {
         return (
             <div>
-                <div className="panel panel-success">
+                <div className="panel panel-danger">
                     <div className="panel-heading">
                         <h3 className="panel-title"><strong><i className="fa fa-list-alt"></i>Saved Articles</strong></h3>
                     </div>

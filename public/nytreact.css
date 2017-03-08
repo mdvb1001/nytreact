@@ -1,3 +1,7 @@
 .panel-body a {
     word-break: break-all;
 }
+
+#runSearch {
+    margin-right: 10px;
+}
