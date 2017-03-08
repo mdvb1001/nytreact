@@ -26,10 +26,10 @@ app.use(express.static(__dirname + '/public'));
 
 var PORT = process.env.PORT || 7777;
 
-
+//  mongodb://localhost/nytreact
 // connect to mongoose
-var db;
 
+var db;
 // mongoose.connect("mongodb://heroku_sd1rpjsp:vpnc8i7dg712lntvs03niaa9q1@ds123050.mlab.com:23050/heroku_sd1rpjsp", function (err) {
 //     if (err) {
 //         console.log("Connection Failed!", err);
@@ -42,9 +42,9 @@ var db;
 
 mongoose.connect("mongodb://heroku_sd1rpjsp:vpnc8i7dg712lntvs03niaa9q1@ds123050.mlab.com:23050/heroku_sd1rpjsp");
 
-db = mongoose.connection("");
+db = mongoose.connection;
 
-function init() {
+// function init() {
     mongoose.Promise = Promise;
 
     db.on('error', console.error.bind(console, 'connection error:'));
@@ -60,4 +60,4 @@ function init() {
     app.listen(PORT, function() {
         console.log("App listening on PORT: " + PORT);
     });
-}
+// }
